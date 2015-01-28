@@ -3,6 +3,11 @@ function User( uid ) {
 
   user = {
     attributes: {
+      firstname: "Josef",
+      lastname: "Šlendr",
+      fullname: function() {
+        return user.attributes.firstname + ' ' + user.attributes.lastname;
+      }
     },
 
     // The attribute setter publish changes using the DataBinder PubSub
@@ -31,15 +36,13 @@ function User( uid ) {
     }
   });
 
-  // set defaults
-  user.set('fullname', function() {
-    return user.attributes.firstname + ' ' + user.attributes.lastname;
-  });
+  // load initials
+  user.refreshAll();
 
   return user;
 }
 
 // javascript
 var user = new User( 'user123' );
-user.set( "firstname", "Josef" );
-user.set( "lastname", "Šlendr" );
+// user.set( "firstname", "Josef" );
+// user.set( "lastname", "Šlendr" );
