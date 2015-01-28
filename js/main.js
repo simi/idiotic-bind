@@ -1,5 +1,5 @@
 function User(uid) {
-  var binder = new DataBinder(uid),
+  var binder = new DataBinder(uid);
 
   var user = {
     'attributes': {
