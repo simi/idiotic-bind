@@ -9,7 +9,7 @@ function DataBinder( object_id ) {
 
   // Listen to change events on elements with the data-binding attribute and proxy
   // them to the PubSub, so that the change is "broadcasted" to all connected objects
-  jQuery( document ).on( "propertychange input", "[data-" + data_attr + "]", function( evt ) {
+  jQuery( document ).on( "textchange", "[data-" + data_attr + "]", function( evt ) {
     var $input = jQuery( this );
 
     pubSub.trigger( message, [ $input.data( data_attr ), $input.val() ] );
