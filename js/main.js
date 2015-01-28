@@ -8,17 +8,17 @@ function User( uid ) {
     // The attribute setter publish changes using the DataBinder PubSub
     set: function( attr_name, val ) {
       this.attributes[ attr_name ] = val;
-
-      // reset all
-      var keys = Object.keys(this.attributes);
-      for(var i = 0; i < keys.length; i++) {
-        var attribute = keys[i]
-        binder.trigger( uid + ":change", [ attribute, this.attributes[attribute], this ] );
-      }
+      this.refreshAll();
     },
 
     get: function( attr_name ) {
       return this.attributes[ attr_name ].call();
+    },
+
+    refreshAll: function() {
+      for(var key in this.attributes) {
+        binder.trigger( uid + ":change", [ key, this.attributes[key], this ] );
+      }
     },
 
     _binder: binder
